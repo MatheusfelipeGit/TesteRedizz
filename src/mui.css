@@ -1,0 +1,17 @@
+.container {
+    margin: 16px;
+  }
+  
+  .header-buttons {
+    margin-bottom: 16px;
+  }
+  
+  .table-container {
+    margin-top: 16px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
