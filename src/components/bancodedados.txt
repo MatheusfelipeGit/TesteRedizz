@@ -1,0 +1,14 @@
+create database if not exists TesteCRUD;
+
+use TesteCRUD;
+
+
+CREATE TABLE Pedidos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nomeCliente VARCHAR(255),
+  cpfCliente VARCHAR(14),
+  nomeProduto VARCHAR(255),
+  precoProduto DECIMAL(10, 2)
+);
+
+select * from Pedidos;
