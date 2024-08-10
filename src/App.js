@@ -10,12 +10,11 @@ import Button from '@mui/material/Button';
 function App() {
   return (
     <div className="App">
-      <h1>REACT com CRUD</h1>
+      <h1>Bem-vindo a minha aplicação!</h1>
       <BrowserRouter>
-        <Stack spacing={2} direction="row">
+        <Stack spacing={2} direction="row" justifyContent="center" style={{ marginBottom: '20px' }}>
           <Button component={Link} to="/" variant="contained">Pedidos</Button>
           <Button component={Link} to="/Produtos" variant="contained">Cadastros</Button>
-          
           <Button component={Link} to="/Sobre" variant="contained">Sobre</Button>
         </Stack>
 

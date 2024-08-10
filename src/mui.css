@@ -1,17 +1,122 @@
-.container {
-    margin: 16px;
-  }
-  
-  .header-buttons {
-    margin-bottom: 16px;
-  }
-  
-  .table-container {
-    margin-top: 16px;
-  }
-  
-  .action-buttons {
-    display: flex;
-    gap: 8px;
-  }
-  
+/* mui.css */
+
+/* Estilos Globais */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Altura da viewport */
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 50px;
+  margin-top: 10px;
+}
+
+.App {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 200px; /* Reduzido para ajuste visual */
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Botões */
+.MuiButton-root {
+  background-color: #1976d2; /* Azul padrão do MUI */
+  color: white;
+  text-transform: none; /* Remove o uppercase */
+}
+
+.MuiButton-root:hover {
+  background-color: #115293; /* Cor mais escura no hover */
+}
+
+/* Espaçamento entre os Botões */
+.Stack {
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+/* Container principal */
+.Container {
+  padding: 20px; /* Adiciona espaçamento interno ao redor do conteúdo */
+  background-color: white; /* Fundo branco para contrastar com o cinza do body */
+  border-radius: 8px; /* Bordas arredondadas para suavizar o visual */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do container */
+}
+
+/* Estilo do título (Typography) */
+.MuiTypography-root {
+  margin-bottom: 20px; /* Espaço abaixo do título */
+  color: #333; /* Cor escura para o texto */
+  text-align: center; /* Centraliza o título */
+}
+
+/* Formulário de edição de pedidos */
+.EditForm-tex {
+  margin-top: 20px; /* Espaço acima do formulário */
+}
+
+/* Campos de texto (TextField) */
+.MuiTextField-root {
+  margin-bottom: 20px; /* Espaçamento entre os campos de texto */
+}
+
+/* Botão de atualização */
+.MuiButton-containedPrimary {
+  background-color: #1976d2; /* Cor do botão de atualização */
+  color: white;
+  text-transform: none;
+  margin-top: 20px; /* Espaço acima do botão */
+}
+
+.MuiButton-containedPrimary:hover {
+  background-color: #115293; /* Cor mais escura para o hover */
+}
+
+/* Estilos da tabela */
+.MuiTableContainer-root {
+  margin-top: 20px; /* Espaçamento acima da tabela */
+}
+
+.MuiTableCell-head {
+  color: white; /* Cor do texto no cabeçalho */
+  font-weight: bold; /* Deixa o texto em negrito */
+}
+
+.MuiTableCell-body {
+  color: #333; /* Cor do texto nas células do corpo da tabela */
+}
+
+.MuiTableRow-root:hover {
+  background-color: #f5f5f5; /* Cor de fundo ao passar o mouse sobre a linha da tabela */
+}
+
+/* Botões de ação na tabela */
+.IconButton {
+  color: #1976d2; /* Cor padrão dos ícones de ação */
+}
+
+.IconButton:hover {
+  color: #115293; /* Cor mais escura no hover dos ícones */
+}
+
+.IconButton-delete {
+  color: #d32f2f; /* Cor vermelha para o ícone de deletar */
+}
+
+.IconButton-delete:hover {
+  color: #9a0007; /* Cor vermelha mais escura no hover */
+}
+
+.Sobre {
+  text-align: center;
+  margin-top: 60px;
+}

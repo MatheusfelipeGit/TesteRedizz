@@ -5,8 +5,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function Pedidos() {
+  // State para armazenar a lista de pedidos
   const [pedidos, setPedidos] = useState([]);
+  // State para armazenar o pedido que está sendo editado
   const [editPedido, setEditPedido] = useState(null);
+  // State para armazenar os dados do formulário
   const [formData, setFormData] = useState({
     nomeCliente: '',
     cpfCliente: '',
@@ -14,21 +17,24 @@ function Pedidos() {
     precoProduto: ''
   });
 
+  // Hook para buscar pedidos quando o componente é montado
   useEffect(() => {
     fetchPedidos();
   }, []);
 
+  // Função para buscar os pedidos da API
   const fetchPedidos = async () => {
     try {
       const response = await axios.get('http://localhost:3033/Pedidos');
-      setPedidos(response.data);
+      setPedidos(response.data); // Atualiza o estado com os pedidos recebidos
     } catch (error) {
       console.error('Erro ao buscar pedidos:', error);
     }
   };
 
+  // Função para iniciar a edição de um pedido
   const handleEdit = (pedido) => {
-    setEditPedido(pedido.id);
+    setEditPedido(pedido.id); // Define o pedido a ser editado
     setFormData({
       nomeCliente: pedido.nomeCliente,
       cpfCliente: pedido.cpfCliente,
@@ -37,11 +43,11 @@ function Pedidos() {
     });
   };
 
+  // Função para atualizar o pedido
   const handleUpdate = async () => {
     if (editPedido && formData.nomeCliente.trim() && formData.cpfCliente.trim() && formData.nomeProduto.trim() && formData.precoProduto && !isNaN(formData.precoProduto)) {
       try {
-        const response = await axios.put('http://localhost:3033/Pedidos', { id: editPedido, ...formData });
-        console.log('Resposta do servidor:', response.data);
+        await axios.put('http://localhost:3033/Pedidos', { id: editPedido, ...formData });
         fetchPedidos(); // Atualiza a lista de pedidos
         setEditPedido(null); // Reseta o estado de edição
         setFormData({
@@ -55,10 +61,11 @@ function Pedidos() {
         console.error('Erro ao atualizar pedido:', error);
       }
     } else {
-      alert('Todos os campos são obrigatórios e preço deve ser um número válido');
+      alert('Todos os campos são obrigatórios e o preço deve ser um número válido.');
     }
   };
 
+  // Função para deletar um pedido
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm('Tem certeza que deseja excluir este pedido?');
     if (confirmDelete) {
@@ -74,33 +81,36 @@ function Pedidos() {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Pedidos</Typography>
+      <Typography variant="h4" gutterBottom>
+        Pedidos
+      </Typography>
 
+      {/* Formulário de Edição de Pedido */}
       {editPedido && (
-        <div style={{ marginBottom: 16 }}>
+        <div className="edit-form">
           <TextField
             label="Nome do Cliente"
             variant="outlined"
             value={formData.nomeCliente}
             onChange={(e) => setFormData({ ...formData, nomeCliente: e.target.value })}
-            style={{ marginRight: 8, marginBottom: 16 }}
             fullWidth
+            style={{ marginBottom: 20 }} // Espaço abaixo dos campos
           />
           <TextField
             label="CPF do Cliente"
             variant="outlined"
             value={formData.cpfCliente}
             onChange={(e) => setFormData({ ...formData, cpfCliente: e.target.value })}
-            style={{ marginRight: 8, marginBottom: 16 }}
             fullWidth
+            style={{ marginBottom: 20 }} // Espaço abaixo dos campos
           />
           <TextField
             label="Nome do Produto"
             variant="outlined"
             value={formData.nomeProduto}
             onChange={(e) => setFormData({ ...formData, nomeProduto: e.target.value })}
-            style={{ marginRight: 8, marginBottom: 16 }}
             fullWidth
+            style={{ marginBottom: 20 }} // Espaço abaixo dos campos
           />
           <TextField
             label="Preço do Produto"
@@ -108,16 +118,25 @@ function Pedidos() {
             type="number"
             value={formData.precoProduto}
             onChange={(e) => setFormData({ ...formData, precoProduto: e.target.value })}
-            style={{ marginRight: 8, marginBottom: 16 }}
             fullWidth
+            InputProps={{
+              classes: { input: 'no-spin-button' }
+            }}
+            style={{ marginBottom: 20 }} // Espaço abaixo dos campos
           />
-          <Button variant="contained" color="primary" onClick={handleUpdate}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleUpdate}
+            style={{ marginTop: 20 }} // Espaço acima do botão
+          >
             Atualizar
           </Button>
         </div>
       )}
 
-      <TableContainer component={Paper}>
+      {/* Tabela de Pedidos */}
+      <TableContainer component={Paper} style={{ marginTop: 20 }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -136,10 +155,10 @@ function Pedidos() {
                 <TableCell>{pedido.nomeProduto}</TableCell>
                 <TableCell>{parseFloat(pedido.precoProduto).toFixed(2)}</TableCell>
                 <TableCell>
-                  <IconButton onClick={() => handleEdit(pedido)} style={{ marginRight: 8 }}>
+                  <IconButton onClick={() => handleEdit(pedido)} style={{ color: '#1976d2' }}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDelete(pedido.id)}>
+                  <IconButton onClick={() => handleDelete(pedido.id)} style={{ color: '#d32f2f', marginLeft: 8 }}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
